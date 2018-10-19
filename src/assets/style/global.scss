@@ -1,0 +1,46 @@
+@import 'reset';
+
+//1rem=fontSize px;
+//1px = (1/fontSize)rem
+$fontSize:37.5;
+@function px2rem($px){
+    @return ($px/$fontSize)+rem;
+}
+
+@mixin center(){
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+.icon{
+    color:#333;
+    font-size:px2rem(20)
+}
+
+.slide-down-enter,.slide-down-leave-to{
+    //进入的时候（隐藏之后）是在屏幕外
+    transform: translate3d(0,-100%,0)
+};
+.slide-down-enter-to,.slide-down-leave,.slide-up-enter-to,.slide-up-leave{
+    //进入的之后（隐藏的时候）是在原位
+    transform: translate3d(0,0,0)
+};
+.slide-down-enter-active,.slide-down-leave-active,
+.slide-up-enter-active,.slide-up-leave-active,
+.fade-enter-active,.fade-enter-active,
+.slide-right-enter-active,.slide-right-leave-active{
+    //动画0.3秒执行（线性）
+    transition: all 0.3s linear;
+}
+.slide-up-enter,.slide-up-leave-to{
+    transform:translate3d(0,px2rem(108),0);
+}
+.fade-enter,.fade-leave-to{
+    opacity: 0;
+}
+.fade-enter-to,.fade-leave{
+    opacity: 1;
+}
+.slide-right-enter,.slide-right-leave-to{
+    transform: translate3d(-100%,0,0)
+}
